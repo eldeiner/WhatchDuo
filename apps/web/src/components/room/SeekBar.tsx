@@ -29,7 +29,7 @@ export function SeekBar({ current, duration, disabled = false, onCommit }: SeekB
         <div className="absolute h-1.5 w-full rounded-full bg-white/[0.12] overflow-hidden group-hover:h-2 transition-all">
           {/* Progress fill */}
           <div
-            className="h-full bg-amber-400 rounded-full"
+            className="h-full bg-sky-400 rounded-full"
             style={{ width: `${percent}%` }}
           />
         </div>
@@ -58,13 +58,13 @@ export function SeekBar({ current, duration, disabled = false, onCommit }: SeekB
 
         {/* Thumb indicator on hover */}
         <div
-          className="pointer-events-none absolute h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-amber-400 shadow-md shadow-amber-500/50 scale-0 group-hover:scale-100 transition-transform"
+          className="pointer-events-none absolute h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-sky-400 shadow-md shadow-sky-500/50 scale-0 group-hover:scale-100 transition-transform"
           style={{ left: `${percent}%` }}
         />
       </div>
 
-      <div className="mt-1 flex items-center justify-between font-mono text-[11px] tabular-nums text-zinc-400">
-        <span className="font-semibold text-amber-300">{formatTime(value)}</span>
+      <div className="mt-1 flex items-center justify-between font-mono text-[11px] tabular-nums text-slate-500 dark:text-zinc-400">
+        <span className="font-semibold text-sky-500 dark:text-sky-300">{formatTime(value)}</span>
         <span>{formatTime(max)}</span>
       </div>
     </div>

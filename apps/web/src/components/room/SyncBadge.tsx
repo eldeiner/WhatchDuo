@@ -18,8 +18,8 @@ export function SyncBadge() {
 
   if (connection === 'connecting' || connection === 'reconnecting') {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-medium text-amber-300">
-        <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-ping" />
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-2.5 py-0.5 text-[11px] font-medium text-sky-500 dark:text-sky-300">
+        <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-ping" />
         Sincronizando...
       </span>
     );
@@ -27,8 +27,8 @@ export function SyncBadge() {
 
   if (syncStatus === 'buffering' || syncStatus === 'correcting') {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-medium text-amber-300">
-        <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-2.5 py-0.5 text-[11px] font-medium text-sky-500 dark:text-sky-300">
+        <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
         Ajustando drift
       </span>
     );

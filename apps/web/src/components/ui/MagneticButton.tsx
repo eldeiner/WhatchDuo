@@ -45,11 +45,11 @@ export function MagneticButton({
   };
 
   const baseStyles =
-    'relative inline-flex items-center justify-center font-medium transition-colors select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]';
+    'relative inline-flex items-center justify-center font-medium transition-colors select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]';
 
   const variants = {
     primary:
-      'bg-amber-400 text-black font-semibold shadow-lg shadow-amber-500/20 hover:bg-amber-300 rounded-xl px-5 py-3',
+      'bg-sky-400 text-slate-950 font-semibold shadow-lg shadow-sky-500/20 hover:bg-sky-300 rounded-xl px-5 py-3',
     secondary:
       'bg-white/[0.05] border border-white/[0.1] text-zinc-200 hover:bg-white/[0.08] hover:text-white rounded-xl px-4 py-2.5',
     ghost:

@@ -69,11 +69,11 @@ export function RoomView({ code, token, myId, onFatal }: RoomViewProps) {
   const offline = connection === 'offline';
 
   return (
-    <div className="relative flex min-h-[100dvh] flex-col bg-[#07080b] text-zinc-100 overflow-x-hidden">
+    <div className="relative flex min-h-[100dvh] flex-col bg-slate-50 dark:bg-[#07080b] text-slate-800 dark:text-zinc-100 overflow-x-hidden transition-colors duration-200">
       <RoomHeader code={code} onLeave={() => setLeaveOpen(true)} />
 
       {reconnecting || offline ? (
-        <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-xs font-semibold text-amber-300">
+        <div className="bg-sky-500/10 border-b border-sky-500/20 px-4 py-2 text-center text-xs font-semibold text-sky-600 dark:text-sky-300">
           {offline
             ? 'Conexión interrumpida. Verificando red...'
             : 'Reconectando sincronizador con el servidor maestro...'}
@@ -136,8 +136,8 @@ export function RoomView({ code, token, myId, onFatal }: RoomViewProps) {
                   onClick={() => setTab('chat')}
                   className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors ${
                     tab === 'chat'
-                      ? 'bg-amber-400/15 text-amber-300 border border-amber-400/25'
-                      : 'text-zinc-400 hover:text-white'
+                      ? 'bg-sky-400/15 text-sky-600 dark:text-sky-300 border border-sky-400/30'
+                      : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   Chat en Vivo
@@ -146,8 +146,8 @@ export function RoomView({ code, token, myId, onFatal }: RoomViewProps) {
                   onClick={() => setTab('participants')}
                   className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors ${
                     tab === 'participants'
-                      ? 'bg-amber-400/15 text-amber-300 border border-amber-400/25'
-                      : 'text-zinc-400 hover:text-white'
+                      ? 'bg-sky-400/15 text-sky-600 dark:text-sky-300 border border-sky-400/30'
+                      : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   Participantes

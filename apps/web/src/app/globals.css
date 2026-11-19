@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light dark;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
@@ -14,17 +14,28 @@
     scroll-behavior: smooth;
   }
 
-  body {
-    @apply min-h-dvh bg-[#08090d] text-zinc-100 antialiased selection:bg-amber-400/25 selection:text-amber-200;
+  /* Modo Claro */
+  html.light body {
+    @apply min-h-dvh bg-slate-50 text-slate-800 antialiased selection:bg-sky-400/25 selection:text-sky-900;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     background-image: 
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 158, 11, 0.12), transparent 70%),
-      radial-gradient(circle 600px at 95% 20%, rgba(244, 63, 94, 0.06), transparent 70%);
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(14, 165, 233, 0.12), transparent 70%),
+      radial-gradient(circle 600px at 95% 20%, rgba(56, 189, 248, 0.08), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  /* Modo Oscuro (Default) */
+  html.dark body, body {
+    @apply min-h-dvh bg-[#070b12] text-slate-100 antialiased selection:bg-sky-400/25 selection:text-sky-200;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(14, 165, 233, 0.15), transparent 70%),
+      radial-gradient(circle 600px at 95% 20%, rgba(56, 189, 248, 0.06), transparent 70%);
     background-attachment: fixed;
   }
 
   :focus-visible {
-    outline: 2px solid #f59e0b;
+    outline: 2px solid #38bdf8;
     outline-offset: 2px;
   }
 
@@ -46,7 +57,7 @@
   .subtle-grid {
     background-size: 32px 32px;
     background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
   }
 }

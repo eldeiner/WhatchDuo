@@ -10,7 +10,7 @@ const VARIANTS: Record<Variant, string> = {
   primary:
     'bg-marquee-400 text-ink-950 hover:bg-marquee-300 active:bg-marquee-500 shadow-marquee focus-visible:ring-marquee-300',
   marquee:
-    'bg-amber-400 text-ink-950 hover:bg-amber-300 active:bg-amber-500 border border-amber-300/40 font-semibold',
+    'bg-sky-400 text-slate-950 hover:bg-sky-300 active:bg-sky-500 border border-sky-300/40 font-semibold shadow-md shadow-sky-400/20',
   secondary:
     'bg-ink-800 text-mist-100 hover:bg-ink-700 border border-white/10 focus-visible:ring-white/40',
   ghost:

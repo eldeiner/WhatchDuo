@@ -64,10 +64,10 @@ export function DockItem({
       style={{ width, height: width }}
       onClick={onClick}
       className={cn(
-        'relative flex items-center justify-center rounded-xl text-zinc-400 transition-colors',
+        'relative flex items-center justify-center rounded-xl text-slate-500 dark:text-zinc-400 transition-colors',
         active
-          ? 'bg-amber-400/15 text-amber-300 border border-amber-400/30'
-          : 'hover:bg-white/[0.06] hover:text-zinc-100',
+          ? 'bg-sky-400/15 text-sky-600 dark:text-sky-300 border border-sky-400/30'
+          : 'hover:bg-slate-100 dark:hover:bg-white/[0.06] hover:text-slate-900 dark:hover:text-zinc-100',
         className
       )}
       title={tooltip}

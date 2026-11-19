@@ -358,8 +358,8 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
 
   if (!playback?.videoUrl) {
     return (
-      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 px-6 text-center bg-[#07080b]">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] text-amber-400">
+      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 px-6 text-center bg-slate-900 dark:bg-[#07080b]">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] text-sky-400">
           <FilmReel size={32} weight="duotone" />
         </div>
         <div>
@@ -383,7 +383,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
           </MagneticButton>
         ) : (
           <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs text-zinc-400">
-            <CircleNotch size={14} className="animate-spin text-amber-400" />
+            <CircleNotch size={14} className="animate-spin text-sky-400" />
             <span>Esperando reproducción...</span>
           </div>
         )}
@@ -413,14 +413,14 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between p-4">
           <SyncBadge />
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs font-medium text-zinc-200 backdrop-blur-md">
-            <Crown size={14} weight="fill" className={isHost ? 'text-amber-400' : 'text-zinc-500'} />
+            <Crown size={14} weight="fill" className={isHost ? 'text-sky-400' : 'text-zinc-500'} />
             {isHost ? 'Tú controlas' : host ? `Host: ${host.nickname}` : 'Espectador'}
           </span>
         </div>
 
         {!ready && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-            <CircleNotch size={36} className="animate-spin text-amber-400" />
+            <CircleNotch size={36} className="animate-spin text-sky-400" />
           </div>
         )}
 
@@ -430,7 +430,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
             onClick={unlockPlayback}
             className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-black/75 backdrop-blur-sm"
           >
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-400 text-black shadow-2xl shadow-amber-500/40 hover:scale-105 transition-transform">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-sky-400 text-slate-950 shadow-2xl shadow-sky-500/40 hover:scale-105 transition-transform">
               <Play size={32} weight="fill" className="ml-1" />
             </div>
             <span className="text-sm font-bold text-white">Toca para reproducir con audio</span>
@@ -450,7 +450,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
             }}
             className="absolute bottom-4 left-4 z-20 flex items-center gap-2 rounded-xl border border-white/15 bg-black/80 px-3.5 py-2 text-xs font-semibold text-zinc-100 backdrop-blur-md hover:bg-black"
           >
-            <SpeakerSimpleSlash size={16} className="text-amber-400" />
+            <SpeakerSimpleSlash size={16} className="text-sky-400" />
             <span>Activar sonido</span>
           </button>
         )}
@@ -463,7 +463,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
       </div>
 
       {/* Cinematic Control Bar (Rare UI / Modern Anti-Slop Layout) */}
-      <div className="w-full border-t border-white/[0.08] bg-[#090a0f] p-4">
+      <div className="w-full border-t border-slate-200 dark:border-white/[0.08] bg-slate-100 dark:bg-[#090a0f] p-4 transition-colors">
         {/* Timeline Range */}
         <SeekBar
           current={current}
@@ -480,7 +480,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
               type="button"
               onClick={handleTogglePlay}
               disabled={!canCommand}
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400 text-black font-bold transition-all hover:bg-amber-300 active:scale-95 disabled:pointer-events-none disabled:opacity-40"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-400 text-slate-950 font-bold transition-all hover:bg-sky-300 active:scale-95 disabled:pointer-events-none disabled:opacity-40 shadow-md shadow-sky-400/20"
               title={isPlaying ? 'Pausar' : 'Reproducir'}
             >
               {isPlaying ? <Pause size={20} weight="fill" /> : <Play size={20} weight="fill" className="ml-0.5" />}
@@ -491,7 +491,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
               type="button"
               onClick={() => handleJump(-10)}
               disabled={!canCommand}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-zinc-300 transition-colors hover:bg-white/[0.08] hover:text-white disabled:opacity-40"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 dark:border-white/[0.08] bg-white dark:bg-white/[0.03] text-slate-700 dark:text-zinc-300 transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.08] hover:text-sky-600 dark:hover:text-white disabled:opacity-40"
               title="Retroceder 10 segundos"
             >
               <ArrowCounterClockwise size={18} />
@@ -502,7 +502,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
               type="button"
               onClick={() => handleJump(10)}
               disabled={!canCommand}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-zinc-300 transition-colors hover:bg-white/[0.08] hover:text-white disabled:opacity-40"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 dark:border-white/[0.08] bg-white dark:bg-white/[0.03] text-slate-700 dark:text-zinc-300 transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.08] hover:text-sky-600 dark:hover:text-white disabled:opacity-40"
               title="Adelantar 10 segundos"
             >
               <ArrowClockwise size={18} />
@@ -512,7 +512,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
             <button
               type="button"
               onClick={toggleMute}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-zinc-300 transition-colors hover:bg-white/[0.08] hover:text-white"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 dark:border-white/[0.08] bg-white dark:bg-white/[0.03] text-slate-700 dark:text-zinc-300 transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.08] hover:text-sky-600 dark:hover:text-white"
               title={muted ? 'Activar sonido' : 'Silenciar'}
             >
               {muted ? <SpeakerSimpleSlash size={18} /> : <SpeakerHigh size={18} />}
@@ -521,7 +521,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
 
           {/* Rates and Actions */}
           <div className="flex items-center gap-2">
-            <div className="hidden sm:flex items-center gap-1 rounded-xl border border-white/[0.08] bg-black/40 p-1">
+            <div className="hidden sm:flex items-center gap-1 rounded-xl border border-slate-300 dark:border-white/[0.08] bg-white/70 dark:bg-black/40 p-1">
               {RATES.map((rate) => (
                 <button
                   key={rate}
@@ -530,8 +530,8 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
                   disabled={!canCommand}
                   className={`h-7 px-2.5 rounded-lg text-xs font-mono font-medium transition-colors disabled:opacity-40 ${
                     effectiveRate === rate
-                      ? 'bg-amber-400 text-black font-bold'
-                      : 'text-zinc-400 hover:text-white'
+                      ? 'bg-sky-400 text-slate-950 font-bold'
+                      : 'text-slate-600 dark:text-zinc-400 hover:text-sky-600 dark:hover:text-white'
                   }`}
                 >
                   {rate}×
@@ -545,7 +545,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
                 type="button"
                 disabled={controlRequestSent || hostDisconnected || connection !== 'connected'}
                 onClick={() => void requestControl()}
-                className="flex items-center gap-1.5 rounded-xl border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-xs font-semibold text-amber-300 hover:bg-amber-400/20 disabled:opacity-50"
+                className="flex items-center gap-1.5 rounded-xl border border-sky-400/30 bg-sky-400/10 px-3 py-2 text-xs font-semibold text-sky-600 dark:text-sky-300 hover:bg-sky-400/20 disabled:opacity-50"
               >
                 <Crown size={14} />
                 <span>{controlRequestSent ? 'Solicitado' : 'Pedir mando'}</span>
@@ -557,7 +557,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
               <button
                 type="button"
                 onClick={onOpenSource}
-                className="hidden sm:flex items-center gap-1.5 rounded-xl border border-white/[0.1] bg-white/[0.04] px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-white/[0.08]"
+                className="hidden sm:flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-white/[0.1] bg-white dark:bg-white/[0.04] px-3 py-2 text-xs font-semibold text-slate-700 dark:text-zinc-200 hover:bg-slate-50 dark:hover:bg-white/[0.08]"
               >
                 <FilmReel size={15} />
                 <span>Cambiar video</span>
@@ -568,7 +568,7 @@ export function VideoStage({ onOpenSource }: VideoStageProps) {
             <button
               type="button"
               onClick={() => void toggleFullscreen()}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-zinc-300 transition-colors hover:bg-white/[0.08] hover:text-white"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 dark:border-white/[0.08] bg-white dark:bg-white/[0.03] text-slate-700 dark:text-zinc-300 transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.08] hover:text-sky-600 dark:hover:text-white"
               title="Pantalla completa"
             >
               {isFullscreen ? <CornersIn size={18} /> : <CornersOut size={18} />}

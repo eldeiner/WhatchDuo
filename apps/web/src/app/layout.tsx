@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { PwaRegister } from '@/components/PwaRegister';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#08080b',
+  themeColor: '#070b12',
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
@@ -46,14 +47,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className="dark">
       <body>
-        <a
-          href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-marquee-400 focus:px-4 focus:py-2 focus:text-ink-950"
-        >
-          Saltar al contenido
-        </a>
-        {children}
-        <PwaRegister />
+        <ThemeProvider>
+          <a
+            href="#contenido"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-sky-400 focus:px-4 focus:py-2 focus:text-slate-950"
+          >
+            Saltar al contenido
+          </a>
+          {children}
+          <PwaRegister />
+        </ThemeProvider>
       </body>
     </html>
   );

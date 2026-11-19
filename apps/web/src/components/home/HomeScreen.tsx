@@ -21,6 +21,7 @@ import { ApiError, createRoomRequest, joinRoomRequest } from '@/lib/api';
 import { getLastRoom, getStoredNickname, setRoomToken, setStoredNickname } from '@/lib/storage';
 import { Brand } from '@/components/Brand';
 import { InstallPrompt } from '@/components/InstallPrompt';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 type Mode = 'create' | 'join';
 
@@ -122,19 +123,20 @@ export function HomeScreen() {
   };
 
   return (
-    <div className="relative min-h-[100dvh] overflow-x-hidden bg-[#090a0f] text-zinc-100 subtle-grid">
+    <div className="relative min-h-[100dvh] overflow-x-hidden bg-slate-50 dark:bg-[#070b12] text-slate-800 dark:text-zinc-100 subtle-grid transition-colors duration-200">
       {/* Navigation Header */}
       <header className="relative z-20 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
         <Brand />
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <ThemeToggle />
           <a
             href="#arquitectura"
-            className="hidden text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-100 sm:block"
+            className="hidden text-sm font-medium text-slate-600 dark:text-zinc-400 transition-colors hover:text-slate-900 dark:hover:text-zinc-100 sm:block"
           >
             Protocolo de Sync
           </a>
-          <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/5 px-3 py-1 text-xs font-medium text-amber-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-600 dark:text-sky-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
             Baja latencia activa
           </span>
         </div>
@@ -145,19 +147,19 @@ export function HomeScreen() {
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Left Column: Value Prop */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-zinc-300">
-              <Sparkle size={14} weight="fill" className="text-amber-400" />
+            <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/[0.08] bg-slate-100 dark:bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-zinc-300">
+              <Sparkle size={14} weight="fill" className="text-sky-400" />
               <span>Sincronización cinematográfica de alta precisión</span>
             </div>
 
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:leading-[1.08] text-balance">
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:leading-[1.08] text-balance">
               Cine compartido en tiempo real.{' '}
-              <span className="text-amber-400">
+              <span className="text-sky-500 dark:text-sky-400">
                 Cero desfase.
               </span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg text-pretty">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 dark:text-zinc-400 sm:text-lg text-pretty">
               Visualiza películas y streams con quien quieras a través de un servidor sincronizador centralizado. Sin cuentas, sin extensiones intrusivas y con control mutuo.
             </p>
 
@@ -166,13 +168,13 @@ export function HomeScreen() {
               {CAPABILITIES.map((cap) => (
                 <div
                   key={cap.title}
-                  className="rounded-xl border border-white/[0.06] bg-[#0d0e14]/60 p-4 backdrop-blur-md"
+                  className="rounded-xl border border-slate-200 dark:border-white/[0.06] bg-white/70 dark:bg-[#0d0e14]/60 p-4 shadow-sm backdrop-blur-md"
                 >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-400/10 text-amber-300">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sky-500/10 text-sky-500 dark:text-sky-300">
                     <cap.icon size={20} weight="duotone" />
                   </div>
-                  <h4 className="mt-3 text-sm font-semibold text-zinc-200">{cap.title}</h4>
-                  <p className="mt-1 text-xs leading-relaxed text-zinc-400">{cap.desc}</p>
+                  <h4 className="mt-3 text-sm font-semibold text-slate-800 dark:text-zinc-200">{cap.title}</h4>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-500 dark:text-zinc-400">{cap.desc}</p>
                 </div>
               ))}
             </div>
@@ -180,8 +182,8 @@ export function HomeScreen() {
 
           {/* Right Column: Clean Solid Form Panel */}
           <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-zinc-800 bg-[#0d0e14] p-6 sm:p-8 shadow-xl">
-              <div className="flex rounded-xl bg-zinc-900/90 p-1 border border-zinc-800">
+            <div className="rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#0d0e14] p-6 sm:p-8 shadow-xl">
+              <div className="flex rounded-xl bg-slate-100 dark:bg-zinc-900/90 p-1 border border-slate-200 dark:border-zinc-800">
                 <button
                   type="button"
                   onClick={() => {
@@ -190,8 +192,8 @@ export function HomeScreen() {
                   }}
                   className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-xs font-semibold tracking-wide uppercase transition-colors ${
                     mode === 'create'
-                      ? 'bg-amber-400 text-zinc-950 font-bold'
-                      : 'text-zinc-400 hover:text-zinc-200'
+                      ? 'bg-sky-400 text-slate-950 font-bold shadow-sm shadow-sky-400/30'
+                      : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
                   }`}
                 >
                   <PlusCircle size={16} weight="bold" />
@@ -205,8 +207,8 @@ export function HomeScreen() {
                   }}
                   className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-xs font-semibold tracking-wide uppercase transition-colors ${
                     mode === 'join'
-                      ? 'bg-amber-400 text-zinc-950 font-bold'
-                      : 'text-zinc-400 hover:text-zinc-200'
+                      ? 'bg-sky-400 text-slate-950 font-bold shadow-sm shadow-sky-400/30'
+                      : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
                   }`}
                 >
                   <SignIn size={16} weight="bold" />
@@ -215,7 +217,7 @@ export function HomeScreen() {
               </div>
 
               {error && (
-                <div className="mt-4 rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-xs text-rose-300">
+                <div className="mt-4 rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-xs text-rose-500 dark:text-rose-300">
                   {error}
                 </div>
               )}
@@ -232,7 +234,7 @@ export function HomeScreen() {
                     className="mt-6 space-y-4"
                   >
                     <div>
-                      <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+                      <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
                         Tu Apodo
                       </label>
                       <input
@@ -242,19 +244,19 @@ export function HomeScreen() {
                         maxLength={24}
                         placeholder="Ej. Sofía"
                         required
-                        className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 transition-colors focus:border-amber-400 focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 px-4 py-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-500 transition-colors focus:border-sky-400 focus:outline-none"
                       />
                     </div>
 
                     <div>
                       <div className="flex items-center justify-between">
-                        <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+                        <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
                           Enlace de Video (Opcional)
                         </label>
                         <button
                           type="button"
                           onClick={() => setVideoUrl('/videos/demo.mp4')}
-                          className="text-[11px] font-medium text-amber-400 hover:text-amber-300"
+                          className="text-[11px] font-medium text-sky-600 dark:text-sky-400 hover:text-sky-500 dark:hover:text-sky-300"
                         >
                           Usar demo
                         </button>
@@ -264,9 +266,9 @@ export function HomeScreen() {
                         value={videoUrl}
                         onChange={(e) => setVideoUrl(e.target.value)}
                         placeholder="YouTube, MP4, HLS (.m3u8)"
-                        className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 transition-colors focus:border-amber-400 focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 px-4 py-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-500 transition-colors focus:border-sky-400 focus:outline-none"
                       />
-                      <p className="mt-1.5 text-[11px] text-zinc-500">
+                      <p className="mt-1.5 text-[11px] text-slate-500 dark:text-zinc-500">
                         Compatible con YouTube, Vimeo, archivos directos MP4 o WebRTC.
                       </p>
                     </div>
@@ -274,7 +276,7 @@ export function HomeScreen() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-amber-400 py-3.5 text-sm font-bold text-zinc-950 transition-colors hover:bg-amber-300 active:scale-[0.98] disabled:opacity-50"
+                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-400 py-3.5 text-sm font-bold text-slate-950 shadow-md shadow-sky-400/25 transition-all hover:bg-sky-300 active:scale-[0.98] disabled:opacity-50"
                     >
                       {loading ? (
                         <span>Configurando sala...</span>
@@ -297,7 +299,7 @@ export function HomeScreen() {
                     className="mt-6 space-y-4"
                   >
                     <div>
-                      <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+                      <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
                         Código de Sala (6 letras)
                       </label>
                       <input
@@ -314,12 +316,12 @@ export function HomeScreen() {
                         maxLength={6}
                         placeholder="ABC123"
                         required
-                        className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-center font-mono text-2xl tracking-[0.4em] uppercase text-amber-400 placeholder-zinc-600 transition-colors focus:border-amber-400 focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 px-4 py-3.5 text-center font-mono text-2xl tracking-[0.4em] uppercase text-sky-500 dark:text-sky-400 placeholder-slate-400 dark:placeholder-zinc-600 transition-colors focus:border-sky-400 focus:outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+                      <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
                         Tu Apodo
                       </label>
                       <input
@@ -329,14 +331,14 @@ export function HomeScreen() {
                         maxLength={24}
                         placeholder="Ej. Lucas"
                         required
-                        className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 transition-colors focus:border-amber-400 focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 px-4 py-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-500 transition-colors focus:border-sky-400 focus:outline-none"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={loading}
-                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-amber-400 py-3.5 text-sm font-bold text-zinc-950 transition-colors hover:bg-amber-300 active:scale-[0.98] disabled:opacity-50"
+                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-400 py-3.5 text-sm font-bold text-slate-950 shadow-md shadow-sky-400/25 transition-all hover:bg-sky-300 active:scale-[0.98] disabled:opacity-50"
                     >
                       {loading ? (
                         <span>Conectando...</span>
@@ -352,9 +354,9 @@ export function HomeScreen() {
                       <button
                         type="button"
                         onClick={() => setCode(lastRoom)}
-                        className="w-full text-center text-xs text-zinc-400 hover:text-amber-300"
+                        className="w-full text-center text-xs text-slate-500 dark:text-zinc-400 hover:text-sky-600 dark:hover:text-sky-300"
                       >
-                        Volver a la sala previa <span className="font-mono font-bold text-amber-400">{lastRoom}</span>
+                        Volver a la sala previa <span className="font-mono font-bold text-sky-500 dark:text-sky-400">{lastRoom}</span>
                       </button>
                     )}
                   </motion.form>
@@ -367,44 +369,44 @@ export function HomeScreen() {
         {/* Bento Grid Features Section */}
         <section id="arquitectura" className="mt-28">
           <div className="flex flex-col items-center text-center">
-            <span className="text-xs font-bold tracking-widest text-amber-400 uppercase">
+            <span className="text-xs font-bold tracking-widest text-sky-500 dark:text-sky-400 uppercase">
               Ingeniería de Sincronía
             </span>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
               Diseñado para ver cine a distancia sin desincronizaciones
             </h2>
-            <p className="mt-3 max-w-2xl text-sm text-zinc-400">
+            <p className="mt-3 max-w-2xl text-sm text-slate-600 dark:text-zinc-400">
               Arquitectura websocket bidireccional conectada a un oscilador maestro con compensación instantánea.
             </p>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="flex flex-col h-full rounded-2xl border border-zinc-800 bg-[#0d0e14] p-8">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/10 text-amber-400">
+            <div className="flex flex-col h-full rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#0d0e14] p-8 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-sky-400/30 bg-sky-500/10 text-sky-500 dark:text-sky-400">
                 <ClockAfternoon size={26} weight="duotone" />
               </div>
-              <h3 className="mt-5 text-lg font-bold text-white">Oscilador Maestro Central</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-400 text-pretty">
+              <h3 className="mt-5 text-lg font-bold text-slate-900 dark:text-white">Oscilador Maestro Central</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-zinc-400 text-pretty">
                 El servidor orquesta cada microsegundo del timeline. Si la conexión de un participante vacila, el reproductor realiza un catch-up progresivo sin congelar al resto.
               </p>
             </div>
 
-            <div className="flex flex-col h-full rounded-2xl border border-zinc-800 bg-[#0d0e14] p-8">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/10 text-amber-400">
+            <div className="flex flex-col h-full rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#0d0e14] p-8 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-sky-400/30 bg-sky-500/10 text-sky-500 dark:text-sky-400">
                 <FilmReel size={26} weight="duotone" />
               </div>
-              <h3 className="mt-5 text-lg font-bold text-white">Fuentes Híbridas & P2P</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-400 text-pretty">
+              <h3 className="mt-5 text-lg font-bold text-slate-900 dark:text-white">Fuentes Híbridas & P2P</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-zinc-400 text-pretty">
                 Transmite archivos directos, streaming en vivo HLS, videos de YouTube o tu propia pantalla mediante WebRTC de bajísima latencia.
               </p>
             </div>
 
-            <div className="flex flex-col h-full rounded-2xl border border-zinc-800 bg-[#0d0e14] p-8">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/10 text-amber-400">
+            <div className="flex flex-col h-full rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#0d0e14] p-8 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-sky-400/30 bg-sky-500/10 text-sky-500 dark:text-sky-400">
                 <DeviceMobile size={26} weight="duotone" />
               </div>
-              <h3 className="mt-5 text-lg font-bold text-white">Instalable como App Nativa</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-400 text-pretty">
+              <h3 className="mt-5 text-lg font-bold text-slate-900 dark:text-white">Instalable como App Nativa</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-zinc-400 text-pretty">
                 Tecnología Progressive Web App con WakeLock que evita que la pantalla se apague durante películas de larga duración.
               </p>
             </div>
@@ -413,8 +415,8 @@ export function HomeScreen() {
       </main>
 
       {/* Clean Aesthetic Footer */}
-      <footer className="relative z-10 border-t border-zinc-800 bg-[#07080b] py-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-xs text-zinc-500 sm:flex-row lg:px-12">
+      <footer className="relative z-10 border-t border-slate-200 dark:border-zinc-800 bg-slate-100 dark:bg-[#07080b] py-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-xs text-slate-500 dark:text-zinc-500 sm:flex-row lg:px-12">
           <p>© 2026 CineDúo Sync. Estándar de reproducción en tiempo real.</p>
           <div className="flex items-center gap-6">
             <span>Usa exclusivamente contenido libre o con derechos.</span>

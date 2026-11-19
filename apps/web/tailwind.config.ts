@@ -1,36 +1,49 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: 'class',
   content: ['./src/**/*.{ts,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
         ink: {
-          950: '#08080b',
-          900: '#0c0c11',
-          850: '#111117',
-          800: '#16161e',
-          700: '#20202b',
-          600: '#2c2c3a',
-          500: '#3d3d4e',
+          950: '#06090e',
+          900: '#090e17',
+          850: '#0e1522',
+          800: '#131e30',
+          700: '#1b2a42',
+          600: '#253856',
+          500: '#344b6f',
+        },
+        sky: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
         },
         marquee: {
-          50: '#fff8e6',
-          200: '#ffe6a3',
-          300: '#ffd775',
-          400: '#f7c14b',
-          500: '#eaa72c',
-          600: '#c9861a',
+          50: '#f0f9ff',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8', // Celeste principal
+          500: '#0ea5e9',
+          600: '#0284c7',
         },
         rose: {
           400: '#f4718a',
           500: '#e25570',
         },
         mist: {
-          100: '#f5f3ee',
-          300: '#c9c6bd',
-          400: '#a8a49a',
-          500: '#7d7a72',
+          100: '#f0f6fc',
+          300: '#c5d3e3',
+          400: '#94a7be',
+          500: '#64748b',
         },
       },
       fontFamily: {
@@ -47,7 +60,7 @@ const config: Config = {
         display: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
       },
       boxShadow: {
-        marquee: '0 12px 40px -12px rgba(234, 167, 44, 0.45)',
+        marquee: '0 12px 40px -12px rgba(56, 189, 248, 0.45)',
         panel: '0 24px 60px -30px rgba(0, 0, 0, 0.9)',
       },
       keyframes: {

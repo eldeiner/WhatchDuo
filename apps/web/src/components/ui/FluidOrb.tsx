@@ -18,7 +18,7 @@ export function FluidOrb({ className }: { className?: string }) {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="h-96 w-96 rounded-full bg-gradient-to-tr from-amber-500/15 via-rose-500/10 to-amber-300/10 blur-[90px]"
+        className="h-96 w-96 rounded-full bg-gradient-to-tr from-sky-500/20 via-sky-400/10 to-blue-500/15 blur-[90px]"
       />
     </div>
   );
