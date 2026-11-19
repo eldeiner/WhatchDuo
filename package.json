@@ -15,6 +15,7 @@
     "dev:server": "npm run dev -w @cineduo/server",
     "dev:web": "npm run dev -w @cineduo/web",
     "build": "npm run build -w @cineduo/shared && npm run build -w @cineduo/server && npm run build -w @cineduo/web",
+    "build:server": "npm run build -w @cineduo/shared && npm run build -w @cineduo/server",
     "start": "concurrently -k -n server,web -c cyan,magenta \"npm:start:server\" \"npm:start:web\"",
     "start:server": "npm run start -w @cineduo/server",
     "start:web": "npm run start -w @cineduo/web",
