@@ -189,8 +189,20 @@ async function extractFromByse(parsedUrl: URL): Promise<ExtractedMedia | null> {
   const source = decrypted.sources?.find((s) => s.url);
   if (!source?.url) return null;
 
-  const streamUrl = source.url;
+  let streamUrl = source.url;
   const isHls = streamUrl.includes('.m3u8') || source.mime_type?.includes('mpegurl');
+
+  // Si es HLS y apunta a un master.m3u8, resolver la sub-playlist index real de video
+  if (isHls && (streamUrl.includes('master.m3u8') || streamUrl.endsWith('.m3u8'))) {
+    try {
+      const resolvedSub = await resolveActualHlsStream(streamUrl, parsedUrl.origin);
+      if (resolvedSub) {
+        streamUrl = resolvedSub;
+      }
+    } catch (err) {
+      logger.debug(`Could not inspect sub-playlist for Byse master: ${err}`);
+    }
+  }
 
   return {
     streamUrl,
@@ -198,6 +210,38 @@ async function extractFromByse(parsedUrl: URL): Promise<ExtractedMedia | null> {
     title: data.title,
     posterUrl: data.poster_url,
   };
+}
+
+/**
+ * Inspecciona un archivo .m3u8 maestro para extraer la URL directa de la sub-playlist (index-v1-a1.m3u8, etc.)
+ * con el mejor ancho de banda o la primera pista de video disponible.
+ */
+export async function resolveActualHlsStream(playlistUrl: string, refererOrigin?: string): Promise<string | null> {
+  try {
+    const res = await fetch(playlistUrl, {
+      headers: getBrowserHeaders(refererOrigin),
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+    const text = await res.text();
+    const baseUrl = new URL(playlistUrl);
+    const lines = text.split('\n');
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]?.trim();
+      if (line && line.startsWith('#EXT-X-STREAM-INF')) {
+        for (let j = i + 1; j < lines.length; j++) {
+          const nextLine = lines[j]?.trim();
+          if (nextLine && !nextLine.startsWith('#')) {
+            return new URL(nextLine, baseUrl).toString();
+          }
+        }
+      }
+    }
+  } catch (err) {
+    logger.debug(`Error resolving actual HLS stream from master: ${err}`);
+  }
+  return null;
 }
 
 /**
@@ -251,6 +295,25 @@ export async function extractMediaSource(urlStr: string): Promise<ExtractedMedia
     parsed = new URL(urlStr);
   } catch {
     return null;
+  }
+
+  // 0. Si ya es un enlace directo a archivo (.mp4, .webm, o .m3u8), no hacer extracción extra
+  const pathname = parsed.pathname.toLowerCase();
+  if (pathname.endsWith('.mp4')) {
+    return { streamUrl: urlStr, type: 'mp4' };
+  }
+  if (pathname.endsWith('.webm')) {
+    return { streamUrl: urlStr, type: 'webm' };
+  }
+  if (pathname.endsWith('.m3u8')) {
+    // Si es un master.m3u8, intentar resolver el sub-playlist index de mayor compatibilidad
+    if (pathname.includes('master.m3u8')) {
+      const resolved = await resolveActualHlsStream(urlStr, parsed.origin);
+      if (resolved) {
+        return { streamUrl: resolved, type: 'hls' };
+      }
+    }
+    return { streamUrl: urlStr, type: 'hls' };
   }
 
   const host = parsed.hostname.toLowerCase();
