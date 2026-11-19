@@ -1,0 +1,16 @@
+node_modules
+**/node_modules
+.next
+**/.next
+dist
+**/dist
+test-results
+playwright-report
+*.db
+*.db-journal
+.git
+.env
+**/.env
+*.log
+temp-server.log
+temp-server.err

@@ -1,0 +1,53 @@
+{
+  "name": "cineduo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CineDúo — mira videos sincronizados con otra persona, desde PC y móvil.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c cyan,magenta \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "npm run dev -w @cineduo/server",
+    "dev:web": "npm run dev -w @cineduo/web",
+    "build": "npm run build -w @cineduo/shared && npm run build -w @cineduo/server && npm run build -w @cineduo/web",
+    "start": "concurrently -k -n server,web -c cyan,magenta \"npm:start:server\" \"npm:start:web\"",
+    "start:server": "npm run start -w @cineduo/server",
+    "start:web": "npm run start -w @cineduo/web",
+    "typecheck": "npm run typecheck -w @cineduo/shared && npm run typecheck -w @cineduo/server && npm run typecheck -w @cineduo/web",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run test -w @cineduo/shared && npm run test -w @cineduo/server",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install --with-deps chromium webkit",
+    "db:generate": "npm run db:generate -w @cineduo/server",
+    "db:migrate": "npm run db:migrate -w @cineduo/server",
+    "db:deploy": "npm run db:deploy -w @cineduo/server",
+    "db:seed": "npm run db:seed -w @cineduo/server",
+    "db:reset": "npm run db:reset -w @cineduo/server"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@playwright/test": "^1.50.0",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "clsx": "^2.1.1",
+    "git": "^0.1.5",
+    "motion": "^14.14.0",
+    "reactjs-skill": "^1.0.1",
+    "tailwind-merge": "^3.7.0"
+  }
+}

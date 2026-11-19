@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# builds
+dist/
+.next/
+out/
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+blob-report/
+
+# env
+.env
+.env.local
+.env.*.local
+!.env.example
+!**/.env.example
+
+# database
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+apps/server/prisma/dev.db*
+
+# misc
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.vercel
+.turbo
+
+.vercel
+.env*

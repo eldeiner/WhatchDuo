@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-dvh bg-[#08090d] text-zinc-100 antialiased selection:bg-amber-400/25 selection:text-amber-200;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 158, 11, 0.12), transparent 70%),
+      radial-gradient(circle 600px at 95% 20%, rgba(244, 63, 94, 0.06), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  :focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
+
+  button, a, input, textarea {
+    touch-action: manipulation;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .subtle-grid {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+}
