@@ -1,0 +1,24 @@
+import type { Ack, ApiErrorBody, ChatMessage, Participant, PlaybackState, RoomStateEvent, ServerToClientEvents, SystemNotice } from '@cineduo/shared';
+import { ERROR_CODES } from '@cineduo/shared';
+import type { LiveParticipant, LiveRoom } from '../services/roomStore';
+import type { CineServer, CineSocket } from './socketTypes';
+export declare function buildRoomState(room: LiveRoom): RoomStateEvent;
+export declare function emitRoomState(io: CineServer, room: LiveRoom): void;
+export declare function emitStateTo(socket: CineSocket, room: LiveRoom): void;
+export declare function broadcastSync(io: CineServer, room: LiveRoom, reason: 'command' | 'heartbeat' | 'host' | 'video', by: string): void;
+export declare function broadcastCommand(io: CineServer, room: LiveRoom, type: 'play' | 'pause' | 'seek' | 'rate', by: string): void;
+export declare function broadcastSystemNotice(io: CineServer, room: LiveRoom, text: string): SystemNotice;
+export declare function broadcastChat(io: CineServer, room: LiveRoom, message: ChatMessage): void;
+export declare function emitParticipantJoined(io: CineServer, room: LiveRoom, participant: LiveParticipant): void;
+export declare function emitParticipantReconnected(io: CineServer, room: LiveRoom, participant: LiveParticipant): void;
+export declare function emitParticipantLeft(io: CineServer, room: LiveRoom, participant: LiveParticipant): void;
+export declare function emitHostChanged(io: CineServer, room: LiveRoom, by: 'transfer' | 'timeout' | 'disconnect'): void;
+export declare function emitPlaybackSnapshot(io: CineServer, room: LiveRoom): void;
+export declare function emitErrorToSocket(socket: CineSocket, error: unknown, request?: string): void;
+export declare function failAck(error: unknown): Ack<never>;
+/** Responde por ack si existe; en cualquier caso notifica el error por evento. */
+export declare function replyError(socket: CineSocket, error: unknown, ack?: (response: Ack<never>) => void, request?: string): void;
+export declare function errorPayload(code: keyof typeof ERROR_CODES, message: string): ApiErrorBody['error'];
+export declare function participantDto(participant: LiveParticipant): Participant;
+export declare function playbackDto(room: LiveRoom): PlaybackState;
+export type { ServerToClientEvents };

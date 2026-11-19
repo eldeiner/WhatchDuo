@@ -1,0 +1,41 @@
+import 'dotenv/config';
+import { z } from 'zod';
+declare const envSchema: z.ZodObject<{
+    NODE_ENV: z.ZodDefault<z.ZodEnum<["development", "test", "production"]>>;
+    PORT: z.ZodDefault<z.ZodNumber>;
+    HOST: z.ZodDefault<z.ZodString>;
+    DATABASE_URL: z.ZodDefault<z.ZodString>;
+    TOKEN_SECRET: z.ZodDefault<z.ZodString>;
+    WEB_ORIGIN: z.ZodDefault<z.ZodString>;
+    CORS_ORIGINS: z.ZodDefault<z.ZodString>;
+    LOG_LEVEL: z.ZodDefault<z.ZodEnum<["debug", "info", "warn", "error"]>>;
+    HOST_DISCONNECT_GRACE_MS: z.ZodDefault<z.ZodNumber>;
+    MAX_PARTICIPANTS: z.ZodDefault<z.ZodNumber>;
+}, "strip", z.ZodTypeAny, {
+    NODE_ENV: "development" | "test" | "production";
+    PORT: number;
+    HOST: string;
+    DATABASE_URL: string;
+    TOKEN_SECRET: string;
+    WEB_ORIGIN: string;
+    CORS_ORIGINS: string;
+    LOG_LEVEL: "debug" | "info" | "warn" | "error";
+    HOST_DISCONNECT_GRACE_MS: number;
+    MAX_PARTICIPANTS: number;
+}, {
+    NODE_ENV?: "development" | "test" | "production" | undefined;
+    PORT?: number | undefined;
+    HOST?: string | undefined;
+    DATABASE_URL?: string | undefined;
+    TOKEN_SECRET?: string | undefined;
+    WEB_ORIGIN?: string | undefined;
+    CORS_ORIGINS?: string | undefined;
+    LOG_LEVEL?: "debug" | "info" | "warn" | "error" | undefined;
+    HOST_DISCONNECT_GRACE_MS?: number | undefined;
+    MAX_PARTICIPANTS?: number | undefined;
+}>;
+export type Env = z.infer<typeof envSchema>;
+export declare function getEnv(): Env;
+export declare function corsOrigins(env: Env): string[];
+export declare function isProd(env: Env): boolean;
+export {};

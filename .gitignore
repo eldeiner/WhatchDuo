@@ -4,8 +4,7 @@ node_modules/
 .pnp.js
 
 # builds
-dist/
-.next/
+apps/web/.next/
 out/
 *.tsbuildinfo
 coverage/
